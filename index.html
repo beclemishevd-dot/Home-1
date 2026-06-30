@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Загрузка...</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#090909;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+}
+
+#text{
+font-size:42px;
+text-align:center;
+transition:.5s;
+}
+
+.loader{
+margin:25px auto;
+width:70px;
+height:70px;
+border:6px solid #333;
+border-top:6px solid #fff;
+border-radius:50%;
+animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+100%{transform:rotate(360deg);}
+}
+
+.house{
+position:absolute;
+font-size:30px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-50px);
+opacity:1;
+}
+100%{
+transform:translateY(110vh);
+opacity:0;
+}
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="screen">
+<div class="loader" id="loader"></div>
+<div id="text">Определение местоположения...</div>
+</div>
+
+<script>
+
+setTimeout(()=>{
+document.getElementById("text").innerHTML="Местоположение найдено ✅";
+},3000);
+
+setTimeout(()=>{
+document.getElementById("loader").style.display="none";
+document.getElementById("text").innerHTML="<div style='font-size:90px'>🏠</div><br><b>Я ДОМА</b>";
+
+for(let i=0;i<40;i++){
+
+let h=document.createElement("div");
+
+h.innerHTML="🏠";
+
+h.className="house";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.animationDuration=(4+Math.random()*5)+"s";
+
+h.style.animationDelay=Math.random()*2+"s";
+
+document.body.appendChild(h);
+
+}
+
+},4500);
+
+</script>
+
+</body>
+</html>
